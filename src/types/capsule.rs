@@ -140,7 +140,7 @@ impl PyCapsule {
         AssertNotZeroSized::assert_not_zero_sized(&value);
 
         // Sanity check for capsule layout
-        debug_assert_eq!(memoffset::offset_of!(CapsuleContents::<T, F>, value), 0);
+        debug_assert_eq!(std::mem::offset_of!(CapsuleContents::<T, F>, value), 0);
 
         let name_ptr = name.as_ref().map_or(std::ptr::null(), |name| name.as_ptr());
         let val = Box::new(CapsuleContents {
